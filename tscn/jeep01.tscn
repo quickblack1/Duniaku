@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcwc7fgugfqkw"]
+
+[ext_resource type="PackedScene" uid="uid://cs0detnggb0px" path="res://glb/low-poly-jeep.glb" id="1_k3xie"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0ceq"]
+size = Vector3(5, 1, 10)
+
+[node name="low-poly-jeep" instance=ExtResource("1_k3xie")]
+
+[node name="Plane" parent="." index="7"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8"]
+shape = SubResource("BoxShape3D_t0ceq")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93558, -1.60561, -1.58724)
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95969, -1.60561, -1.58724)
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93558, -1.60561, 2.33732)
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25257, -1.60561, 2.30803)

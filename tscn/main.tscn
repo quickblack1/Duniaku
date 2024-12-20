@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1af60vya5tho"]
+
+[ext_resource type="Script" path="res://tscn/main.gd" id="1_j5ukv"]
+[ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
+[ext_resource type="PackedScene" uid="uid://bcwc7fgugfqkw" path="res://tscn/jeep01.tscn" id="3_7y5hv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r6b5v"]
+size = Vector3(1000, 0.1, 1000)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_j5ukv")
+
+[node name="MeshInstance3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+shape = SubResource("BoxShape3D_6232s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("BoxMesh_r6b5v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 128.843, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_0d4w4")]
+
+[node name="low-poly-jeep" parent="." instance=ExtResource("3_7y5hv")]
+transform = Transform3D(0.77, 0, 0, 0, 0.77, 0, 0, 0, 0.77, 0, 3.80124, -13.2331)
