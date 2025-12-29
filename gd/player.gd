@@ -14,14 +14,14 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			mouse_mode = "visible"
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			input_mouse = Vector2.ZERO
-		else:
-			mouse_mode = "captured"
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#if Input.is_action_just_pressed("ui_cancel"):
+		#if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			#mouse_mode = "visible"
+			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			#input_mouse = Vector2.ZERO
+		#else:
+			#mouse_mode = "captured"
+			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# Add the gravity.
 	if not is_on_floor():

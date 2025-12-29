@@ -7,6 +7,9 @@ size = Vector3(5, 1, 10)
 
 [node name="low-poly-jeep" instance=ExtResource("1_k3xie")]
 
+[node name="Camera" parent="." index="1"]
+visible = false
+
 [node name="Plane" parent="." index="7"]
 visible = false
 

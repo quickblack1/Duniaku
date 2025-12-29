@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://kx1b5yaillui"]
 
-[ext_resource type="Script" path="res://gd/player.gd" id="1_narml"]
-[ext_resource type="Script" path="res://gd/head.gd" id="2_5o5fa"]
+[ext_resource type="Script" uid="uid://qotihg1c4p8n" path="res://gd/player.gd" id="1_narml"]
+[ext_resource type="Script" uid="uid://coss52b8kmq8j" path="res://gd/head.gd" id="2_5o5fa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e0uxt"]
 
@@ -26,4 +26,3 @@ script = ExtResource("2_5o5fa")
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0892197)
 environment = SubResource("Environment_gtjn6")
-current = true

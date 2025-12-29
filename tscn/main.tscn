@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=8 format=3 uid="uid://c1af60vya5tho"]
 
-[ext_resource type="Script" path="res://tscn/main.gd" id="1_j5ukv"]
+[ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
-[ext_resource type="PackedScene" uid="uid://bcwc7fgugfqkw" path="res://tscn/jeep01.tscn" id="3_7y5hv"]
+[ext_resource type="PackedScene" uid="uid://lhs5v2t3uae7" path="res://tscn/jeep02.tscn" id="3_8wxc5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
 size = Vector3(1000, 1, 1000)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6ans"]
+albedo_color = Color(0.16470589, 0.13333334, 1, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_r6b5v"]
-size = Vector3(1000, 0.1, 1000)
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8wxc5"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j5ukv")
@@ -19,6 +24,7 @@ script = ExtResource("1_j5ukv")
 shape = SubResource("BoxShape3D_6232s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_g6ans")
 mesh = SubResource("BoxMesh_r6b5v")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -27,5 +33,10 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_0d4w4")]
 
-[node name="low-poly-jeep" parent="." instance=ExtResource("3_7y5hv")]
-transform = Transform3D(0.77, 0, 0, 0, 0.77, 0, 0, 0, 0.77, 0, 3.80124, -13.2331)
+[node name="Jeep02" parent="." instance=ExtResource("3_8wxc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.373031, 2.7184143, 0)
+mass = 13.679
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0023689, -27.395802)
+mesh = SubResource("BoxMesh_8wxc5")

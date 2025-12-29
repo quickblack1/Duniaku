@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cs0detnggb0px"
-path="res://.godot/imported/low-poly-jeep.glb-c8b95247331da3e0bc6608334e6c4585.scn"
+uid="uid://ty4w3r7bmv6r"
+path="res://.godot/imported/jeep02.glb-d6c44668ec732b4230a95ca505b5e403.scn"
 
 [deps]
 
-source_file="res://glb/low-poly-jeep.glb"
-dest_files=["res://.godot/imported/low-poly-jeep.glb-c8b95247331da3e0bc6608334e6c4585.scn"]
+source_file="res://glb/jeep02.glb"
+dest_files=["res://.godot/imported/jeep02.glb-d6c44668ec732b4230a95ca505b5e403.scn"]
 
 [params]
 
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=1
+gltf/naming_version=2
 gltf/embedded_image_handling=1
