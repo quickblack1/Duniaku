@@ -416,6 +416,7 @@ shadow_mesh = SubResource("ArrayMesh_sui4s")
 size = Vector3(4.355, 4.355, 9.105)
 
 [node name="Jeep02" type="VehicleBody3D"]
+mass = 60.0
 script = ExtResource("1_nqviu")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
@@ -440,10 +441,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2674553, -1.2375885, 2.6038
 use_as_traction = true
 wheel_radius = 0.84
 
+[node name="BR_tyre" type="MeshInstance3D" parent="VehicleWheel3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016987324, -0.008828282, 0.008378506)
+mesh = SubResource("ArrayMesh_rjd83")
+skeleton = NodePath("")
+
 [node name="VehicleWheel3D2" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.377, -1.238, 2.604)
 use_as_traction = true
 wheel_radius = 0.84
+
+[node name="BL_tyre" type="MeshInstance3D" parent="VehicleWheel3D2"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.08258104, -0.008416772, 0.008242607)
+mesh = SubResource("ArrayMesh_rjd83")
+skeleton = NodePath("")
 
 [node name="VehicleWheel3D3" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.281, -1.238, -2.974)
@@ -465,16 +476,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.08
 mesh = SubResource("ArrayMesh_rjd83")
 skeleton = NodePath("")
 
-[node name="BR_tyre" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.269154, -1.2464168, 2.6122427)
-mesh = SubResource("ArrayMesh_rjd83")
-skeleton = NodePath("")
-
-[node name="BL_tyre" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.294419, -1.2464168, 2.6122427)
-mesh = SubResource("ArrayMesh_rjd83")
-skeleton = NodePath("")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10420871, 0)
 shape = SubResource("BoxShape3D_nqviu")
@@ -485,3 +486,13 @@ script = ExtResource("2_nxvd7")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1014934, 0, 0)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4986825, 0, 0)
+
+[node name="SpeedLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://srci2os67gm6"]
+
+[ext_resource type="PackedScene" uid="uid://b8yo4fap26oj2" path="res://glb/afimoll.glb" id="1_v55h2"]
+
+[node name="afimoll" instance=ExtResource("1_v55h2")]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=9 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
 [ext_resource type="PackedScene" uid="uid://lhs5v2t3uae7" path="res://tscn/jeep02.tscn" id="3_8wxc5"]
+[ext_resource type="PackedScene" uid="uid://d28p2jjo3xnnw" path="res://tscn/afimoll2.tscn" id="4_a7rub"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
 size = Vector3(1000, 1, 1000)
@@ -14,6 +15,7 @@ albedo_color = Color(0.16470589, 0.13333334, 1, 1)
 size = Vector3(1000, 1, 1000)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8wxc5"]
+size = Vector3(1, 2, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j5ukv")
@@ -35,8 +37,10 @@ shadow_enabled = true
 
 [node name="Jeep02" parent="." instance=ExtResource("3_8wxc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.373031, 2.7184143, 0)
-mass = 13.679
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0023689, -27.395802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5775537, -4.5240097)
 mesh = SubResource("BoxMesh_8wxc5")
+
+[node name="Afimoll" parent="." instance=ExtResource("4_a7rub")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 15, -477.8643)
