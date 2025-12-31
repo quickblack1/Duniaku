@@ -11,7 +11,8 @@ var rotation_target: Vector3
 @onready var camera01 = $Head/Camera3D
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_cancel"):
