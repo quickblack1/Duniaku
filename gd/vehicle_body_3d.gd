@@ -2,6 +2,9 @@ extends VehicleBody3D
 
 @export var MAX_STEER = 0.5
 @export var ENGINE_POWER = 500
+@export var max_engine_force := 1500.0
+@export var brake_force := 50.0
+@export var max_steer := 0.4
 
 @onready var speed_label = $"SpeedLabel"
 @onready var popup: PopupPanel = $PopupPanel
@@ -25,11 +28,32 @@ func _process(_delta: float) -> void:
 		btn.visible = true
 		button2.visible = false
 
-func _physics_process(delta: float) -> void:
-	steering = move_toward(steering, Input.get_axis("ui_right", "ui_left") * MAX_STEER, delta * 10)
+func _physics_process(_delta: float) -> void:
+	#steering = move_toward(steering, Input.get_axis("ui_right", "ui_left") * MAX_STEER, delta * 10)
+	var steer := Input.get_action_strength("ui_right") \
+			   - Input.get_action_strength("ui_left")
+
+	for wheel in get_children():
+		if wheel is VehicleWheel3D and wheel.use_as_steering:
+			wheel.steering = -steer * max_steer
 	
 	if engine_on == true:
-		engine_force = Input.get_axis("ui_up", "ui_down") * ENGINE_POWER
+		var throttle := Input.get_action_strength("ui_up") - Input.get_action_strength("ui_down")
+
+		# Daya enjin
+		for wheel in get_children():
+			if wheel is VehicleWheel3D and wheel.use_as_traction:
+				wheel.engine_force = -throttle * max_engine_force
+
+		# Brake
+		if Input.is_action_pressed("brake"):
+			for wheel in get_children():
+				if wheel is VehicleWheel3D:
+					wheel.brake = brake_force
+		else:
+			for wheel in get_children():
+				if wheel is VehicleWheel3D:
+					wheel.brake = 0.0
 	
 	
 		

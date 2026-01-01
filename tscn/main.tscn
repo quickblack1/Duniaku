@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=11 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
 [ext_resource type="PackedScene" uid="uid://lhs5v2t3uae7" path="res://tscn/jeep02.tscn" id="3_8wxc5"]
 [ext_resource type="PackedScene" uid="uid://d28p2jjo3xnnw" path="res://tscn/afimoll2.tscn" id="4_a7rub"]
 [ext_resource type="PackedScene" uid="uid://blcuwrkiukhbf" path="res://tscn/ak_47.tscn" id="5_g6ans"]
+[ext_resource type="PackedScene" uid="uid://cee6fy3eaj0la" path="res://tscn/tree.tscn" id="6_8kplt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
 size = Vector3(1000, 1, 1000)
@@ -48,3 +49,8 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 15, -477.8643)
 
 [node name="AK47" parent="." instance=ExtResource("5_g6ans")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.085947, 0)
+
+[node name="Baum3 (copy)" parent="." instance=ExtResource("6_8kplt")]
+
+[node name="Baum3 (copy)2" parent="." instance=ExtResource("6_8kplt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.1955, 0, 0)
