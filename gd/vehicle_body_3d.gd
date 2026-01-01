@@ -1,7 +1,7 @@
 extends VehicleBody3D
 
-@export var MAX_STEER = 0.5
-@export var ENGINE_POWER = 500
+#@export var MAX_STEER = 0.5
+#@export var ENGINE_POWER = 500
 @export var max_engine_force := 1500.0
 @export var brake_force := 50.0
 @export var max_steer := 0.4
@@ -89,7 +89,7 @@ func _input(event: InputEvent) -> void:
 func _on_button_pressed() -> void:
 	if not engine_on:
 		engine_on = true
-		print(engine_on)
+		#print(engine_on)
 		$Engine_start.play()
 		popup.visible = false
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
