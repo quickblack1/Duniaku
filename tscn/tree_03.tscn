@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4bthykfq27w0"]
+
+[ext_resource type="PackedScene" uid="uid://btmqomrhq7gd4" path="res://glb/Baum3-a.glb" id="1_o0cpi"]
+
+[node name="Tree03" instance=ExtResource("1_o0cpi")]
+
+[node name="Plane" parent="." index="0"]
+visible = false
+
+[node name="leaf210088" parent="." index="4"]
+visible = false
+
+[node name="leaf1001" parent="." index="5"]
+visible = false

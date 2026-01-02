@@ -74,12 +74,13 @@ func _on_engine_start_finished():
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_click"):
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+		#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 		popup.popup(Rect2(event.position, popup.size))
 		#btn.visible = true
 		#btn.global_position = event.position
 	if event.is_action_pressed("left_click"):
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+		pass
+		#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	if event.is_action_pressed("ui_up"):
 		if engine_on:
 			$Engine_start.stop()
@@ -92,7 +93,7 @@ func _on_button_pressed() -> void:
 		#print(engine_on)
 		$Engine_start.play()
 		popup.visible = false
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+		#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 		#tunggu bunyi start habis, baru idle loop
 		$Engine_start.finished.connect(_on_engine_start_finished, CONNECT_ONE_SHOT)
 

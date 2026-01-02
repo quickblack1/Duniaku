@@ -44,10 +44,18 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	if DisplayServer.mouse_get_mode() == DisplayServer.MOUSE_MODE_CAPTURED:
+		camera01.rotation.z = lerp_angle(camera01.rotation.z, input_mouse.x * 25 * delta, delta * 5)
+		camera01.rotation.x = lerp_angle(camera01.rotation.x, rotation_target.x, delta * 25)
+		rotation.y = lerp_angle(rotation.y, rotation_target.y, delta * 25)
 	
-	camera01.rotation.z = lerp_angle(camera01.rotation.z, input_mouse.x * 25 * delta, delta * 5)
-	camera01.rotation.x = lerp_angle(camera01.rotation.x, rotation_target.x, delta * 25)
-	rotation.y = lerp_angle(rotation.y, rotation_target.y, delta * 25)
+	if is_on_floor():
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			var body = collision.get_collider()
+			if body is RigidBody3D:
+				body.apply_central_impulse((body.global_transform.origin - global_transform.origin).normalized() * 5)
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_mode == "captured":

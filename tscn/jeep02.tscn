@@ -489,7 +489,6 @@ spring_length = 0.0
 script = ExtResource("2_nxvd7")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1014934, 0, 0)
@@ -515,7 +514,7 @@ size = Vector2i(110, 100)
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel"]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 133.0
+offset_right = 106.0
 offset_bottom = 96.0
 mouse_filter = 0
 

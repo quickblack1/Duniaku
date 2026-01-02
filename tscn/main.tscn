@@ -1,11 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=19 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
 [ext_resource type="PackedScene" uid="uid://lhs5v2t3uae7" path="res://tscn/jeep02.tscn" id="3_8wxc5"]
 [ext_resource type="PackedScene" uid="uid://d28p2jjo3xnnw" path="res://tscn/afimoll2.tscn" id="4_a7rub"]
+[ext_resource type="Texture2D" uid="uid://fqaebwt4h6jk" path="res://Bark001_4K-JPG/Bark001_4K_Color.jpg" id="4_ap273"]
 [ext_resource type="PackedScene" uid="uid://blcuwrkiukhbf" path="res://tscn/ak_47.tscn" id="5_g6ans"]
 [ext_resource type="PackedScene" uid="uid://cee6fy3eaj0la" path="res://tscn/tree.tscn" id="6_8kplt"]
+[ext_resource type="PackedScene" uid="uid://0bkgqbst7fti" path="res://glb/tree01.glb" id="7_ao1ln"]
+[ext_resource type="PackedScene" uid="uid://b2jr63vda2b4i" path="res://tscn/tree_02.tscn" id="9_8d387"]
+[ext_resource type="PackedScene" uid="uid://c4bthykfq27w0" path="res://tscn/tree_03.tscn" id="10_8d387"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
 size = Vector3(1000, 1, 1000)
@@ -16,8 +20,19 @@ albedo_color = Color(0.16470589, 0.13333334, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_r6b5v"]
 size = Vector3(1000, 1, 1000)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mn4ff"]
+albedo_texture = ExtResource("4_ap273")
+
 [sub_resource type="BoxMesh" id="BoxMesh_8wxc5"]
+material = SubResource("StandardMaterial3D_mn4ff")
 size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ao1ln"]
+size = Vector3(0.055, 0.455, 0.92)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ao1ln"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ao1ln"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j5ukv")
@@ -36,6 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_0d4w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9224067, 0)
 
 [node name="Jeep02" parent="." instance=ExtResource("3_8wxc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.373031, 2.7184143, 0)
@@ -47,10 +63,34 @@ mesh = SubResource("BoxMesh_8wxc5")
 [node name="Afimoll" parent="." instance=ExtResource("4_a7rub")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 15, -477.8643)
 
-[node name="AK47" parent="." instance=ExtResource("5_g6ans")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.085947, 0)
-
 [node name="Baum3 (copy)" parent="." instance=ExtResource("6_8kplt")]
 
 [node name="Baum3 (copy)2" parent="." instance=ExtResource("6_8kplt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.1955, 0, 0)
+
+[node name="tree01" parent="." instance=ExtResource("7_ao1ln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 95.515305)
+
+[node name="AK47" type="RigidBody3D" parent="." groups=["weapons"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.310837, 1.0430727, 0)
+
+[node name="AK47" parent="AK47" instance=ExtResource("5_g6ans")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.11074239)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AK47"]
+shape = SubResource("BoxShape3D_ao1ln")
+
+[node name="AK46" type="RigidBody3D" parent="." groups=["weapons"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6366944, 5.7560973)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AK46"]
+shape = SubResource("SphereShape3D_ao1ln")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AK46"]
+mesh = SubResource("SphereMesh_ao1ln")
+
+[node name="Tree02" parent="." instance=ExtResource("9_8d387")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.950537, 0, 0)
+
+[node name="Tree03" parent="." instance=ExtResource("10_8d387")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
