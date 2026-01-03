@@ -8,7 +8,12 @@ var mouse_sensitivity = 700
 var input_mouse: Vector2
 var rotation_target: Vector3
 
+#@export var bullet_scene: PackedScene
+
 @onready var camera01 = $Head/Camera3D
+@onready var muzzle_flash: GPUParticles3D = $Head/Camera3D/AK47/GPUParticles3D
+@onready var muzzle: Marker3D = $Head/Camera3D/AK47/Muzzle
+@onready var gunshot_sound: AudioStreamPlayer3D = $Head/Camera3D/AK47/AudioStreamPlayer3D
 
 func _ready() -> void:
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -55,7 +60,9 @@ func _physics_process(delta: float) -> void:
 			var body = collision.get_collider()
 			if body is RigidBody3D:
 				body.apply_central_impulse((body.global_transform.origin - global_transform.origin).normalized() * 5)
-
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_mode == "captured":
@@ -65,3 +72,20 @@ func _input(event: InputEvent) -> void:
 		rotation_target.y -= event.relative.x / mouse_sensitivity
 		rotation_target.x -= event.relative.y / mouse_sensitivity
 		#print("rotation target: ",rotation_target)
+
+func shoot():
+	gunshot_sound.play()
+	var bullet_scene: PackedScene = preload("res://tscn/bullet_01.tscn")
+	var bullet := bullet_scene.instantiate() as RigidBody3D
+	get_tree().current_scene.add_child(bullet)
+
+	# posisi & rotasi peluru
+	bullet.global_transform = muzzle.global_transform
+
+	# arah ikut kamera
+	var dir: Vector3 = -camera01.global_transform.basis.z
+	bullet.shoot(dir)
+
+	# muzzle flash
+	muzzle_flash.restart()
+	muzzle_flash.emitting = true

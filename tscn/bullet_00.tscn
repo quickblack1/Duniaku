@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1ki2r8haa2bm"]
+
+[ext_resource type="Script" uid="uid://b7idh0vhmkadb" path="res://gd/bullet_00.gd" id="1_peiem"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_52wk5"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_peiem"]
+radius = 0.25
+height = 1.0
+
+[node name="Bullet00" type="RigidBody3D"]
+script = ExtResource("1_peiem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_52wk5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_peiem")
