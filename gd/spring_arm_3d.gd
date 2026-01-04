@@ -1,6 +1,6 @@
 extends SpringArm3D
 
-@export var mouse_sensibility: float = 0.005
+@export var mouse_sensibility: float = Settings.mouse_sensitivity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

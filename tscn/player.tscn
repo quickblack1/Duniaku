@@ -55,7 +55,7 @@ grow_vertical = 2
 text = "Press \"E\" to pick"
 
 [node name="AK47" parent="Head/Camera3D" instance=ExtResource("4_u4c7w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24599028, 0, -0.4869228)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19501996, -0.11332357, -0.4869228)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Head/Camera3D/AK47"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0025351644, -0.006971717, -0.3206892)
@@ -85,3 +85,42 @@ text = "30/30"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Camera3D/AK47"]
 stream = ExtResource("5_6sl1v")
+max_polyphony = 12
+
+[node name="Marker3D" type="Marker3D" parent="Head/Camera3D/AK47"]
+
+[node name="AK48" parent="Head/Camera3D" instance=ExtResource("4_u4c7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.386)
+visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Head/Camera3D/AK48"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0025351644, -0.006971717, -0.3206892)
+visible = false
+emitting = false
+amount = 1
+lifetime = 0.02
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_u4c7w")
+draw_pass_1 = SubResource("PlaneMesh_6sl1v")
+
+[node name="Muzzle" type="Marker3D" parent="Head/Camera3D/AK48"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019013882, -0.005173564, -0.31989992)
+
+[node name="Label" type="Label" parent="Head/Camera3D/AK48"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "30/30"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Camera3D/AK48"]
+stream = ExtResource("5_6sl1v")
+max_polyphony = 12
+
+[node name="Marker3D" type="Marker3D" parent="Head/Camera3D/AK48"]

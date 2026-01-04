@@ -12,6 +12,7 @@ extends VehicleBody3D
 @onready var button2: Button = $PopupPanel/VBoxContainer/Button2
 
 var engine_on := false
+var active: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -74,8 +75,9 @@ func _on_engine_start_finished():
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right_click"):
+		pass
 		#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-		popup.popup(Rect2(event.position, popup.size))
+		#popup.popup(Rect2(event.position, popup.size))
 		#btn.visible = true
 		#btn.global_position = event.position
 	if event.is_action_pressed("left_click"):

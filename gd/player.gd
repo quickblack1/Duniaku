@@ -4,9 +4,16 @@ const SPEED = 10.0
 const JUMP_VELOCITY = 10
 
 var mouse_mode = "captured"
-var mouse_sensitivity = 700
+var mouse_sensitivity: float = Settings.mouse_sensitivity
 var input_mouse: Vector2
 var rotation_target: Vector3
+var is_aiming: bool = false
+#var aim_pos: Vector3 = Vector3(0.0, 0.1, 0.0) # naik 0.2 meter ke depan
+var aim_pos: Vector3
+var hip_pos: Vector3       # posisi biasa
+var aim_fov: float = 50.0
+var hip_fov: float = 70.0
+var aim_speed: float = 8.0
 
 #@export var bullet_scene: PackedScene
 
@@ -14,10 +21,31 @@ var rotation_target: Vector3
 @onready var muzzle_flash: GPUParticles3D = $Head/Camera3D/AK47/GPUParticles3D
 @onready var muzzle: Marker3D = $Head/Camera3D/AK47/Muzzle
 @onready var gunshot_sound: AudioStreamPlayer3D = $Head/Camera3D/AK47/AudioStreamPlayer3D
+@onready var weapon = $Head/Camera3D/AK47
+@onready var weapon_aim = $Head/Camera3D/AK48
 
 func _ready() -> void:
+	hip_pos = weapon.position
+	aim_pos = weapon_aim.position
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	pass
+	#pass
+
+func _process(delta):
+	
+	# toggle aiming bila klik kanan
+	if Input.is_action_just_pressed("right_click"):
+		is_aiming = !is_aiming
+		
+		#print(weapon.position)
+		print(hip_pos)
+
+	# tentukan target position ikut is_aiming
+	var target_pos = aim_pos if is_aiming else hip_pos
+	weapon.position = weapon.position.lerp(target_pos, aim_speed * delta)
+
+	# tentukan target FOV ikut is_aiming
+	var target_fov = aim_fov if is_aiming else hip_fov
+	camera01.fov = lerp(camera01.fov, target_fov, aim_speed * delta)
 
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_cancel"):
@@ -63,7 +91,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
-
+		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_mode == "captured":
 		input_mouse = event.relative / mouse_sensitivity
