@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://kx1b5yaillui"]
+[gd_scene load_steps=12 format=3 uid="uid://kx1b5yaillui"]
 
 [ext_resource type="Script" uid="uid://qotihg1c4p8n" path="res://gd/player.gd" id="1_narml"]
 [ext_resource type="Script" uid="uid://coss52b8kmq8j" path="res://gd/head.gd" id="2_5o5fa"]
 [ext_resource type="Script" uid="uid://dkil8glpafvlx" path="res://gd/ray_cast_3d.gd" id="3_3c7ea"]
 [ext_resource type="PackedScene" uid="uid://blcuwrkiukhbf" path="res://tscn/ak_47.tscn" id="4_u4c7w"]
 [ext_resource type="AudioStream" uid="uid://y5r5okojg2ke" path="res://ogg/battle-rifle-42734.ogg" id="5_6sl1v"]
+[ext_resource type="AudioStream" uid="uid://bynluesxagw4u" path="res://ogg/no_bullet.ogg" id="6_hsluc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e0uxt"]
 
@@ -71,18 +72,6 @@ draw_pass_1 = SubResource("PlaneMesh_6sl1v")
 [node name="Muzzle" type="Marker3D" parent="Head/Camera3D/AK47"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019013882, -0.005173564, -0.31989992)
 
-[node name="Label" type="Label" parent="Head/Camera3D/AK47"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "30/30"
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Camera3D/AK47"]
 stream = ExtResource("5_6sl1v")
 max_polyphony = 12
@@ -124,3 +113,10 @@ stream = ExtResource("5_6sl1v")
 max_polyphony = 12
 
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D/AK48"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_hsluc")

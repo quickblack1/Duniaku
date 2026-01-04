@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=24 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
@@ -39,6 +39,19 @@ size = Vector3(1, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mn4ff"]
 size = Vector3(1, 2, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8d387"]
+height = 0.1
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2uin"]
+albedo_color = Color(1, 0.12941177, 0.10980392, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bnc66"]
+material = SubResource("StandardMaterial3D_d2uin")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.1
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j5ukv")
@@ -102,10 +115,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.950537, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94944096, -3.5688035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0500736, -3.5688035)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_8d387")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_mn4ff")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1389427, -3.4999459)
+mass = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_8d387")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_bnc66")
+skeleton = NodePath("../..")

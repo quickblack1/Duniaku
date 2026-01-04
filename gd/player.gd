@@ -14,6 +14,7 @@ var hip_pos: Vector3       # posisi biasa
 var aim_fov: float = 50.0
 var hip_fov: float = 70.0
 var aim_speed: float = 8.0
+var total_bullets: int = 30
 
 #@export var bullet_scene: PackedScene
 
@@ -23,6 +24,7 @@ var aim_speed: float = 8.0
 @onready var gunshot_sound: AudioStreamPlayer3D = $Head/Camera3D/AK47/AudioStreamPlayer3D
 @onready var weapon = $Head/Camera3D/AK47
 @onready var weapon_aim = $Head/Camera3D/AK48
+@onready var bullet_remaining : Label = $Label
 
 func _ready() -> void:
 	hip_pos = weapon.position
@@ -32,12 +34,13 @@ func _ready() -> void:
 
 func _process(delta):
 	
+	
 	# toggle aiming bila klik kanan
 	if Input.is_action_just_pressed("right_click"):
 		is_aiming = !is_aiming
 		
 		#print(weapon.position)
-		print(hip_pos)
+		#print(hip_pos)
 
 	# tentukan target position ikut is_aiming
 	var target_pos = aim_pos if is_aiming else hip_pos
@@ -46,6 +49,8 @@ func _process(delta):
 	# tentukan target FOV ikut is_aiming
 	var target_fov = aim_fov if is_aiming else hip_fov
 	camera01.fov = lerp(camera01.fov, target_fov, aim_speed * delta)
+	
+	bullet_remaining.text = ""
 
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_cancel"):
@@ -82,16 +87,24 @@ func _physics_process(delta: float) -> void:
 		camera01.rotation.x = lerp_angle(camera01.rotation.x, rotation_target.x, delta * 25)
 		rotation.y = lerp_angle(rotation.y, rotation_target.y, delta * 25)
 	
-	if is_on_floor():
-		var collision = move_and_collide(velocity * delta)
-		if collision:
-			var body = collision.get_collider()
-			if body is RigidBody3D:
-				body.apply_central_impulse((body.global_transform.origin - global_transform.origin).normalized() * 5)
+	#if is_on_floor():
+		#var collision = move_and_collide(velocity * delta)
+		#if collision:
+			#var body = collision.get_collider()
+			#if body is RigidBody3D:
+				#body.apply_central_impulse((body.global_transform.origin - global_transform.origin).normalized() * 5)
 	
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
-		
+		if total_bullets >= 1:
+			shoot()
+		else:
+			$AudioStreamPlayer3D.play()
+	
+	if Input.is_action_just_pressed("reload"):
+		total_bullets = 30
+	
+	
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_mode == "captured":
 		input_mouse = event.relative / mouse_sensitivity
@@ -106,6 +119,9 @@ func shoot():
 	var bullet_scene: PackedScene = preload("res://tscn/bullet_01.tscn")
 	var bullet := bullet_scene.instantiate() as RigidBody3D
 	get_tree().current_scene.add_child(bullet)
+	
+	total_bullets -= 1
+	print(total_bullets)
 
 	# posisi & rotasi peluru
 	bullet.global_transform = muzzle.global_transform
