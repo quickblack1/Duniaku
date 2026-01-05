@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://7wku2rgocpcu"]
+
+[ext_resource type="Texture2D" uid="uid://c3or5n8vch3ia" path="res://weapon/M4A1/M4A1_Base_Color.png" id="1_2ajpw"]
+[ext_resource type="Texture2D" uid="uid://gpdkd0i0mwic" path="res://weapon/M4A1/M4A1_Height.png" id="2_nrsak"]
+[ext_resource type="Texture2D" uid="uid://bwj8d2yvopjpu" path="res://weapon/M4A1/M4A1_Metallic.png" id="3_j0lv3"]
+[ext_resource type="Texture2D" uid="uid://durov3ylrfep4" path="res://weapon/M4A1/M4A1_Normal.png" id="4_ntfw2"]
+[ext_resource type="Texture2D" uid="uid://b5i1asvm5fmtc" path="res://weapon/M4A1/M4A1_Roughness.png" id="5_hkg1y"]
+
+[resource]
+albedo_texture = ExtResource("1_2ajpw")
+metallic = 1.0
+metallic_texture = ExtResource("3_j0lv3")
+roughness_texture = ExtResource("5_hkg1y")
+normal_enabled = true
+normal_texture = ExtResource("4_ntfw2")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_nrsak")

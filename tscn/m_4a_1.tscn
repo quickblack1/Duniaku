@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://bcmg62342sosv"]
+
+[ext_resource type="PackedScene" uid="uid://bbotcaolkfmws" path="res://weapon/M4A1/M4A1.fbx" id="1_0373y"]
+[ext_resource type="Texture2D" uid="uid://c3or5n8vch3ia" path="res://weapon/M4A1/M4A1_Base_Color.png" id="2_t8vr0"]
+[ext_resource type="Texture2D" uid="uid://gpdkd0i0mwic" path="res://weapon/M4A1/M4A1_Height.png" id="3_wkabv"]
+[ext_resource type="Texture2D" uid="uid://bwj8d2yvopjpu" path="res://weapon/M4A1/M4A1_Metallic.png" id="4_3nh3i"]
+[ext_resource type="Texture2D" uid="uid://durov3ylrfep4" path="res://weapon/M4A1/M4A1_Normal.png" id="5_ors05"]
+[ext_resource type="Texture2D" uid="uid://b5i1asvm5fmtc" path="res://weapon/M4A1/M4A1_Roughness.png" id="6_wroec"]
+[ext_resource type="Material" uid="uid://7wku2rgocpcu" path="res://tres/m_4a_1.tres" id="7_3nh3i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkabv"]
+albedo_texture = ExtResource("2_t8vr0")
+metallic = 1.0
+metallic_texture = ExtResource("4_3nh3i")
+roughness_texture = ExtResource("6_wroec")
+normal_enabled = true
+normal_texture = ExtResource("5_ors05")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wkabv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agu34"]
+albedo_texture = ExtResource("2_t8vr0")
+metallic = 1.0
+metallic_texture = ExtResource("4_3nh3i")
+roughness_texture = ExtResource("6_wroec")
+normal_enabled = true
+normal_texture = ExtResource("5_ors05")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wkabv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nh3i"]
+albedo_texture = ExtResource("2_t8vr0")
+metallic = 1.0
+metallic_texture = ExtResource("4_3nh3i")
+roughness_texture = ExtResource("6_wroec")
+normal_enabled = true
+normal_texture = ExtResource("5_ors05")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wkabv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu7y7"]
+albedo_texture = ExtResource("2_t8vr0")
+metallic = 1.0
+metallic_texture = ExtResource("4_3nh3i")
+roughness_texture = ExtResource("6_wroec")
+normal_enabled = true
+normal_texture = ExtResource("5_ors05")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wkabv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8argj"]
+albedo_texture = ExtResource("2_t8vr0")
+metallic = 1.0
+metallic_texture = ExtResource("4_3nh3i")
+roughness_texture = ExtResource("6_wroec")
+normal_enabled = true
+normal_texture = ExtResource("5_ors05")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wkabv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpg62"]
+albedo_texture = ExtResource("2_t8vr0")
+metallic = 1.0
+metallic_texture = ExtResource("4_3nh3i")
+roughness_texture = ExtResource("6_wroec")
+normal_enabled = true
+normal_texture = ExtResource("5_ors05")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wkabv")
+
+[node name="M4A1" instance=ExtResource("1_0373y")]
+
+[node name="Magazine" parent="M4A1" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wkabv")
+
+[node name="Base" parent="M4A1" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_agu34")
+
+[node name="Charging_Handle" parent="M4A1/Parts" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3nh3i")
+
+[node name="Sight" parent="M4A1/Parts" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pu7y7")
+
+[node name="Sight_2" parent="M4A1/Parts/Sight" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8argj")
+
+[node name="Switch1" parent="M4A1/Parts/Sight" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xpg62")
+
+[node name="Switch2" parent="M4A1/Parts/Sight" index="2"]
+surface_material_override/0 = ExtResource("7_3nh3i")
+
+[node name="Firemode_Selector" parent="M4A1/Parts" index="2"]
+surface_material_override/0 = ExtResource("7_3nh3i")
+
+[node name="Trigger" parent="M4A1/Parts" index="3"]
+surface_material_override/0 = ExtResource("7_3nh3i")
+
+[node name="Ejector_Lid" parent="M4A1/Parts/Ejector" index="0"]
+surface_material_override/0 = ExtResource("7_3nh3i")
+
+[node name="Ejector_2" parent="M4A1/Parts/Ejector" index="1"]
+surface_material_override/0 = ExtResource("7_3nh3i")
+
+[node name="Barrel" parent="M4A1/Parts" index="5"]
+surface_material_override/0 = ExtResource("7_3nh3i")
+
+[node name="Stock" parent="M4A1/Parts" index="6"]
+surface_material_override/0 = ExtResource("7_3nh3i")
