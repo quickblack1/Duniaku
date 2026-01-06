@@ -116,3 +116,4 @@ reload={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://nid4bvhy5xqp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwm5f"]
+albedo_color = Color(1, 0.84313726, 0, 1)
+metallic = 1.0
+roughness = 0.15
+clearcoat_enabled = true
+clearcoat = 0.2
+clearcoat_roughness = 0.05
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e5reb"]
+material = SubResource("StandardMaterial3D_bwm5f")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.01
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o0nhy"]
+height = 0.01
+radius = 0.05
+
+[node name="GoldCoin" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_e5reb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_o0nhy")

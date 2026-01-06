@@ -68,7 +68,7 @@ func _process(delta):
 			else:
 				weapon_mode = "semi"
 		
-		print(weapon_mode)
+		#print(weapon_mode)
 		weapon.visible = true
 		weapon01.visible = false
 		hip_pos = weapon.position

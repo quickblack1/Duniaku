@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=28 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
+[ext_resource type="Script" uid="uid://dr2philq60uxf" path="res://gd/directional_light_3d.gd" id="2_mn4ff"]
 [ext_resource type="PackedScene" uid="uid://lhs5v2t3uae7" path="res://tscn/jeep02.tscn" id="3_8wxc5"]
 [ext_resource type="PackedScene" uid="uid://d28p2jjo3xnnw" path="res://tscn/afimoll2.tscn" id="4_a7rub"]
 [ext_resource type="Texture2D" uid="uid://fqaebwt4h6jk" path="res://Bark001_4K-JPG/Bark001_4K_Color.jpg" id="4_ap273"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://0bkgqbst7fti" path="res://glb/tree01.glb" id="7_ao1ln"]
 [ext_resource type="PackedScene" uid="uid://b2jr63vda2b4i" path="res://tscn/tree_02.tscn" id="9_8d387"]
 [ext_resource type="PackedScene" uid="uid://c4bthykfq27w0" path="res://tscn/tree_03.tscn" id="10_8d387"]
+[ext_resource type="PackedScene" uid="uid://nid4bvhy5xqp" path="res://tscn/gold_coin.tscn" id="12_d2uin"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
 size = Vector3(1000, 1, 1000)
@@ -53,6 +55,14 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.1
 
+[sub_resource type="Sky" id="Sky_d2uin"]
+
+[sub_resource type="Environment" id="Environment_d2uin"]
+background_mode = 2
+sky = SubResource("Sky_d2uin")
+ambient_light_source = 2
+ambient_light_energy = 0.0
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j5ukv")
 
@@ -68,6 +78,7 @@ mesh = SubResource("BoxMesh_r6b5v")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 128.843, 0)
 shadow_enabled = true
+script = ExtResource("2_mn4ff")
 
 [node name="Player" parent="." instance=ExtResource("2_0d4w4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9224067, 0)
@@ -133,3 +144,9 @@ shape = SubResource("CylinderShape3D_8d387")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
 mesh = SubResource("CylinderMesh_bnc66")
 skeleton = NodePath("../..")
+
+[node name="GoldCoin" parent="." instance=ExtResource("12_d2uin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7569995, 0.57743907, -2.8892422)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d2uin")
