@@ -15,6 +15,7 @@ var aim_fov: float = 50.0
 var hip_fov: float = 70.0
 var aim_speed: float = 8.0
 var total_bullets: int = 30
+var weapon_mode: String = "semi"
 
 #@export var bullet_scene: PackedScene
 
@@ -24,11 +25,16 @@ var total_bullets: int = 30
 @onready var gunshot_sound: AudioStreamPlayer3D = $Head/Camera3D/AK47/AudioStreamPlayer3D
 @onready var weapon = $Head/Camera3D/AK47
 @onready var weapon_aim = $Head/Camera3D/AK48
+@onready var weapon01 = $Head/Camera3D/M4A1
+@onready var weapon01_aim = $Head/Camera3D/M4A1_aim
 @onready var bullet_remaining : Label = $Label
+
 
 func _ready() -> void:
 	hip_pos = weapon.position
 	aim_pos = weapon_aim.position
+	
+	#weapon01.position = hip_pos
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#pass
 
@@ -44,13 +50,37 @@ func _process(delta):
 
 	# tentukan target position ikut is_aiming
 	var target_pos = aim_pos if is_aiming else hip_pos
-	weapon.position = weapon.position.lerp(target_pos, aim_speed * delta)
-
+	if weapon.visible:
+		weapon.position = weapon.position.lerp(target_pos, aim_speed * delta)
+	if weapon01.visible:
+		weapon01.position = weapon01.position.lerp(target_pos, aim_speed * delta)
+	
 	# tentukan target FOV ikut is_aiming
 	var target_fov = aim_fov if is_aiming else hip_fov
 	camera01.fov = lerp(camera01.fov, target_fov, aim_speed * delta)
 	
 	bullet_remaining.text = ""
+	
+	if Input.is_action_just_pressed("1"):
+		if weapon.visible:
+			if weapon_mode == "semi":
+				weapon_mode = "auto"
+			else:
+				weapon_mode = "semi"
+		
+		print(weapon_mode)
+		weapon.visible = true
+		weapon01.visible = false
+		hip_pos = weapon.position
+		aim_pos = weapon_aim.position
+	
+	if Input.is_action_just_pressed("2"):
+		weapon.visible = false
+		weapon01.visible = true
+		hip_pos = weapon01.position
+		aim_pos = weapon01_aim.position
+	
+	
 
 func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_cancel"):
