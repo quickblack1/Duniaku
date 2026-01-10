@@ -16,6 +16,8 @@ var hip_fov: float = 70.0
 var aim_speed: float = 8.0
 var total_bullets: int = 30
 var weapon_mode: String = "semi"
+var can_shoot: bool = true
+var reloading: bool = false
 
 #@export var bullet_scene: PackedScene
 
@@ -28,6 +30,7 @@ var weapon_mode: String = "semi"
 @onready var weapon01 = $Head/Camera3D/M4A1
 @onready var weapon01_aim = $Head/Camera3D/M4A1_aim
 @onready var bullet_remaining : Label = $Label
+
 
 
 func _ready() -> void:
@@ -125,12 +128,19 @@ func _physics_process(delta: float) -> void:
 				#body.apply_central_impulse((body.global_transform.origin - global_transform.origin).normalized() * 5)
 	
 	if Input.is_action_just_pressed("shoot"):
-		if total_bullets >= 1:
+		if total_bullets >= 1 and can_shoot == true:
 			shoot()
 		else:
-			$AudioStreamPlayer3D.play()
+			if reloading == false:
+				$AudioStreamPlayer3D.play()
 	
 	if Input.is_action_just_pressed("reload"):
+		reloading = true
+		can_shoot = false
+		$AudioStreamPlayer3D2.play()
+		await $AudioStreamPlayer3D2.finished
+		reloading = false
+		can_shoot = true
 		total_bullets = 30
 	
 	

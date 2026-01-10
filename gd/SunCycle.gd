@@ -14,15 +14,13 @@ var time: int = 0   # dalam MINIT
 func _ready() -> void:
 	#pass # Replace with function body.
 	$Timer.timeout.connect(_on_minute_passed)
+	$Label.text = "Waktu: 00:00"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	#pass
-	#var jam: int = floor(time / 60.0)
-	var _minit: int = time % 60
-
-	#$Label.text = "Waktu: %02d:%02d" % [jam, minit]
+	pass
+	
 
 func _on_minute_passed() -> void:
 	time += 1
@@ -34,6 +32,10 @@ func _on_minute_passed() -> void:
 	var intensity: float = sun_curve(t)
 	light_energy = lerp(night_energy, day_energy, intensity)
 	light_color = night_color.lerp(day_color, intensity)
+	
+	var jam: int = floor(time / 60.0)
+	var minit: int = time % 60
+	$Label.text = "Waktu: %02d:%02d" % [jam, minit]
 
 func sun_curve(t: float) -> float:
 	return clamp(sin(t * PI), 0.0, 1.0)

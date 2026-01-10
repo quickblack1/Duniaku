@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://kx1b5yaillui"]
+[gd_scene load_steps=14 format=3 uid="uid://kx1b5yaillui"]
 
 [ext_resource type="Script" uid="uid://qotihg1c4p8n" path="res://gd/player.gd" id="1_narml"]
 [ext_resource type="Script" uid="uid://coss52b8kmq8j" path="res://gd/head.gd" id="2_5o5fa"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://y5r5okojg2ke" path="res://ogg/battle-rifle-42734.ogg" id="5_6sl1v"]
 [ext_resource type="PackedScene" uid="uid://bcmg62342sosv" path="res://tscn/m_4a_1.tscn" id="6_1q7bi"]
 [ext_resource type="AudioStream" uid="uid://bynluesxagw4u" path="res://ogg/no_bullet.ogg" id="6_hsluc"]
+[ext_resource type="AudioStream" uid="uid://cud24t8ijsseo" path="res://ogg/gun-full-reload-spaced-385104.ogg" id="8_ne3il"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e0uxt"]
 
@@ -129,3 +130,6 @@ offset_bottom = 23.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_hsluc")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_ne3il")
