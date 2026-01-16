@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=32 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
@@ -55,12 +55,23 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.1
 
-[sub_resource type="Sky" id="Sky_d2uin"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uf0e4"]
 
-[sub_resource type="Environment" id="Environment_d2uin"]
-sky = SubResource("Sky_d2uin")
-ambient_light_source = 2
-ambient_light_energy = 0.0
+[sub_resource type="BoxMesh" id="BoxMesh_hegun"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uf0e4"]
+
+[sub_resource type="Sky" id="Sky_hegun"]
+sky_material = SubResource("ProceduralSkyMaterial_uf0e4")
+
+[sub_resource type="Environment" id="Environment_uf0e4"]
+background_mode = 2
+sky = SubResource("Sky_hegun")
+ambient_light_source = 3
+ambient_light_energy = 0.2
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_white = 5.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j5ukv")
@@ -72,27 +83,6 @@ shape = SubResource("BoxShape3D_6232s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 mesh = SubResource("BoxMesh_r6b5v")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.22325023, -0.9747614, 0, 0.9747614, -0.22325023, 0, 128.843, 0)
-shadow_enabled = true
-script = ExtResource("3_bnc66")
-
-[node name="Timer" type="Timer" parent="DirectionalLight3D"]
-wait_time = 60.0
-autostart = true
-
-[node name="Label" type="Label" parent="DirectionalLight3D"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -23.0
-offset_right = 0.5
-grow_horizontal = 2
-grow_vertical = 0
 
 [node name="Player" parent="." instance=ExtResource("2_0d4w4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9224067, 0)
@@ -162,9 +152,6 @@ skeleton = NodePath("../..")
 [node name="GoldCoin" parent="." instance=ExtResource("12_d2uin")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7569995, 0.57743907, -2.8892422)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_d2uin")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
@@ -198,6 +185,43 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "Quit"
 script = ExtResource("14_uf0e4")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6651978, 2.7068453)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("BoxShape3D_uf0e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("BoxMesh_hegun")
+
+[node name="Label3D" type="Label3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.64159966)
+text = "Hello"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uf0e4")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 1.7484554e-07, 0, -1.7484554e-07, 0.99999994, 0, 15.644848, 0)
+shadow_enabled = true
+script = ExtResource("3_bnc66")
+
+[node name="Timer" type="Timer" parent="DirectionalLight3D2"]
+wait_time = 60.0
+autostart = true
+
+[node name="Label" type="Label" parent="DirectionalLight3D2"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -23.0
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/Button" to="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/Button" method="_on_pressed"]

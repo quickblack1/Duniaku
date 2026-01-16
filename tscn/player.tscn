@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kx1b5yaillui"]
+[gd_scene load_steps=16 format=3 uid="uid://kx1b5yaillui"]
 
 [ext_resource type="Script" uid="uid://qotihg1c4p8n" path="res://gd/player.gd" id="1_narml"]
 [ext_resource type="Script" uid="uid://coss52b8kmq8j" path="res://gd/head.gd" id="2_5o5fa"]
@@ -13,11 +13,36 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnj8g"]
 
-[sub_resource type="Environment" id="Environment_gtjn6"]
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u4c7w"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6sl1v"]
+
+[sub_resource type="Animation" id="Animation_ne3il"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 1.055, 0, 0, 1, 2, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_kai0q"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxvsy"]
+_data = {
+&"RESET": SubResource("Animation_kai0q"),
+&"new_animation": SubResource("Animation_ne3il")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_narml")
@@ -34,7 +59,6 @@ script = ExtResource("2_5o5fa")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07541531)
-environment = SubResource("Environment_gtjn6")
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
@@ -79,6 +103,11 @@ stream = ExtResource("5_6sl1v")
 max_polyphony = 12
 
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D/AK47"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D/AK47"]
+libraries = {
+&"": SubResource("AnimationLibrary_wxvsy")
+}
 
 [node name="AK48" parent="Head/Camera3D" instance=ExtResource("4_u4c7w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, -0.386)

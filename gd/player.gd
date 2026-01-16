@@ -161,7 +161,7 @@ func shoot():
 	get_tree().current_scene.add_child(bullet)
 	
 	total_bullets -= 1
-	print(total_bullets)
+	#print(total_bullets)
 
 	# posisi & rotasi peluru
 	bullet.global_transform = muzzle.global_transform

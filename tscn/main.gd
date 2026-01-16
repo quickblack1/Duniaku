@@ -2,11 +2,15 @@ extends Node3D
 
 @onready var player: CharacterBody3D = $Player
 
+var hour: int = 0
+var minute: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#pass # Replace with function body.
 	load_game()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+	#$Timer.timeout.connect(_on_minute_passed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -22,7 +26,12 @@ func save_game():
 			"x": player.global_position.x,
 			"y": player.global_position.y,
 			"z": player.global_position.z
+		},
+		"time": {
+			"hour": hour,
+			"minute": minute
 		}
+		
 	}
 	file.store_string(JSON.stringify(data))
 	file.close()
@@ -42,8 +51,10 @@ func load_game():
 
 	var pos = data["player_pos"]
 	player.global_position = Vector3(pos.x, pos.y, pos.z)
+	#var time = data["time"]
 	#health = data["health"]
-	#time = data["time"]
+	var time = data["time"]
+	minute = time.minute
 	#ammo = data["ammo"]
 
 	print("Game dimuatkan")
@@ -51,4 +62,8 @@ func load_game():
 
 func _on_timer_timeout() -> void:
 	#pass # Replace with function body.
+	minute += 1
+	if minute == 60:
+		minute = 0
+		hour += 1
 	save_game()
