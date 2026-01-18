@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c1af60vya5tho"]
+[gd_scene load_steps=33 format=3 uid="uid://c1af60vya5tho"]
 
 [ext_resource type="Script" uid="uid://d4jpn6o12bagq" path="res://tscn/main.gd" id="1_j5ukv"]
 [ext_resource type="PackedScene" uid="uid://kx1b5yaillui" path="res://tscn/player.tscn" id="2_0d4w4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b2jr63vda2b4i" path="res://tscn/tree_02.tscn" id="9_8d387"]
 [ext_resource type="PackedScene" uid="uid://c4bthykfq27w0" path="res://tscn/tree_03.tscn" id="10_8d387"]
 [ext_resource type="PackedScene" uid="uid://nid4bvhy5xqp" path="res://tscn/gold_coin.tscn" id="12_d2uin"]
+[ext_resource type="Script" uid="uid://d4l8xycqwpo3x" path="res://gd/world_environment.gd" id="14_hegun"]
 [ext_resource type="Script" uid="uid://c0w8rsr80c72i" path="res://gd/quit.gd" id="14_uf0e4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6232s"]
@@ -66,9 +67,9 @@ sky_material = SubResource("ProceduralSkyMaterial_uf0e4")
 
 [sub_resource type="Environment" id="Environment_uf0e4"]
 background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_hegun")
 ambient_light_source = 3
-ambient_light_energy = 0.2
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 5.0
@@ -201,11 +202,15 @@ text = "Hello"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uf0e4")
+script = ExtResource("14_hegun")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 1.7484554e-07, 0, -1.7484554e-07, 0.99999994, 0, 15.644848, 0)
+transform = Transform3D(1, 0, 0, 0, -0.78152037, 0.62387955, 0, -0.62387955, -0.78152037, 0, 15.644848, 0)
+light_energy = 0.165
+light_indirect_energy = 0.0
 shadow_enabled = true
 script = ExtResource("3_bnc66")
+night_energy = 0.0
 
 [node name="Timer" type="Timer" parent="DirectionalLight3D2"]
 wait_time = 60.0
@@ -222,6 +227,20 @@ offset_top = -23.0
 offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Label2" type="Label" parent="DirectionalLight3D2"]
+offset_left = 7.0
+offset_top = 109.0
+offset_right = 47.0
+offset_bottom = 132.0
+
+[node name="Label3" type="Label" parent="DirectionalLight3D2"]
+offset_left = 3.0
+offset_top = 63.0
+offset_right = 43.0
+offset_bottom = 86.0
+
+[node name="Node3D" type="Node3D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/Button" to="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/Button" method="_on_pressed"]
