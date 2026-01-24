@@ -18,6 +18,7 @@ var total_bullets: int = 30
 var weapon_mode: String = "semi"
 var can_shoot: bool = true
 var reloading: bool = false
+var spotLightOn: bool = false
 
 #@export var bullet_scene: PackedScene
 
@@ -30,6 +31,7 @@ var reloading: bool = false
 @onready var weapon01 = $Head/Camera3D/M4A1
 @onready var weapon01_aim = $Head/Camera3D/M4A1_aim
 @onready var bullet_remaining : Label = $Label
+@onready var spotLight3D: SpotLight3D = $Head/Camera3D/SpotLight3D
 
 
 
@@ -83,6 +85,13 @@ func _process(delta):
 		hip_pos = weapon01.position
 		aim_pos = weapon01_aim.position
 	
+	if Input.is_action_just_pressed("spotLight"):
+		spotLightOn = !spotLightOn
+		#print(spotLightOn)
+		if spotLightOn:
+			spotLight3D.visible = true
+		else:
+			spotLight3D.visible = false
 	
 
 func _physics_process(delta: float) -> void:

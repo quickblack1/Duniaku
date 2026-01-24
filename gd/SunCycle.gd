@@ -8,7 +8,7 @@ extends DirectionalLight3D
 @export var day_energy: float = 1.5
 @export var night_energy: float = 0.05
 @export var intensity: float
-@export var world_env: WorldEnvironment
+@onready var world_env: WorldEnvironment = $WorldEnvironment
 @export var day_bg_energy := 1.0
 @export var night_bg_energy := 0.05
 
@@ -29,12 +29,14 @@ func _ready() -> void:
 	time = time2.minute
 	
 	t = float(time) / float(day_duration_minutes)
-	var sun_angle: float = lerp(0.0, -180.0, t)
-	print(sun_angle)
+	var sun_angle: float = lerp(-90.0, 270.0, t)
+	#print(sun_angle)
 	rotation_degrees.x = sun_angle
 	intensity = sun_curve(t)
 	light_energy = lerp(night_energy, day_energy, intensity)
 	light_color = night_color.lerp(day_color, intensity)
+	
+	update_environment(t)
 	
 
 
@@ -83,6 +85,7 @@ func sun_curve(t2: float) -> float:
 
 func update_environment(t2: float) -> void:
 	intensity = sun_curve(t2)
+	world_env.environment.background_energy_multiplier = lerp(night_bg_energy, day_bg_energy, intensity)
 
-	if world_env and world_env.environment:
-		world_env.environment.background_energy_multiplier = lerp(night_bg_energy, day_bg_energy, intensity)
+	#if world_env and world_env.environment:
+		#world_env.environment.background_energy_multiplier = lerp(night_bg_energy, day_bg_energy, intensity)
